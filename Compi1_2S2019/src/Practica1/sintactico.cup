@@ -1,0 +1,125 @@
+
+/* -------- Codigo usuario -------- */
+
+// -------- Paquetes e importaciones
+
+package Practica1;
+
+import java_cup.runtime.Symbol;
+import java.util.LinkedList;
+
+// -------- Codigo para el parser, variables, metodos
+parser code
+//codigo de java, variables globales y demas----------------------
+{:
+    public String resultado="";
+    public static LinkedList<Tabla_error> TablaEs = new LinkedList<Tabla_error>();
+
+    //Metodo al que se llama automaticamente ante algun error sintactico
+    public void syntax_error(Symbol s)
+    {
+    String lexema = s.value.toString();
+    int fila = s.right;
+    int columna = s.left;
+
+    System.out.println("!!!! Error Sintactico Recuperado !!!!");
+    System.out.println("\t\tLexema: " + lexema);
+    System.out.println("\t\tFila: " + fila);
+    System.out.println("\t\tColumna: " + columna);
+
+    Tabla_error datos = new Tabla_error(lexema,fila,columna,"Error Sintactico","Caracter no esperado");
+    TablaEs.add(datos);
+    }
+
+
+    //Metodo al que se llama cuando no se puede recuperar un error sintactico
+    public void unrecovered_syntax_error(Symbol s)
+    {
+    String lexema = s.value.toString();
+    int fila = s.right;
+    int columna = s.left;
+
+    System.out.println("!!!! Error Sintactico, Panic mode !!!!");
+    System.out.println("\t\tLexema: " + lexema);
+    System.out.println("\t\tFila: " + fila);
+    System.out.println("\t\tColumna: " + columna);
+
+    Tabla_error datos = new Tabla_error(lexema,fila,columna,"Error Sintactico","Caracter no esperado");
+    TablaEs.add(datos);
+    }
+
+    public static LinkedList<ErrorSintactico> ListaErroresSintacticos = new LinkedList<ErrorSintactico>();
+    public LinkedList<String> listaHTML = new LinkedList<>();
+
+    public static void setSalidaHTML(String entrada){
+        HTML = entrada;
+System.out.println("si imprime esto es porque llego al setSalida");
+        /* for(int i=0; i<listaHTML.size(); i++){
+            System.out.println(listaHTML.get(i));
+        } */
+    }
+    public LinkedList<ErrorSintactico> getlista() {
+        return ListaErroresSintacticos;
+    }
+    public void syntax_error(Symbol s)
+    {
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+
+        System.out.println("!!!! Error Sintactico Recuperado !!!!");
+        System.out.println("\t\tLexema: " + lexema);
+        System.out.println("\t\tFila: " + fila);
+        System.out.println("\t\tColumna: " + columna);
+
+        ErrorSintactico datos = new ErrorSintactico(fila,columna,lexema,"Caracter no esperado");
+        ListaErroresSintacticos.add(datos);
+    }
+
+    //Metodo al que se llama cuando no se puede recuperar un error sintactico
+    public void unrecovered_syntax_error(Symbol s)
+    {
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+
+        System.out.println("!!!! Error Sintactico, Panic mode !!!!");
+        System.out.println("\t\tLexema: " + lexema);
+        System.out.println("\t\tFila: " + fila);
+        System.out.println("\t\tColumna: " + columna);
+
+        ErrorSintactico datos = new ErrorSintactico(fila,columna,lexema,"Caracter no esperado");
+        ListaErroresSintacticos.add(datos);
+    }   
+
+:}
+
+// -------- Codigo para las acciones gramaticales
+action code
+{:
+
+
+:}
+
+/* -------- Declaraciones -------- */
+// -------- Terminales
+
+terminal IGUAL,COMILLAS,COMA,PUNTOYCOMA,MAS,MENOS,POR,DIV,DOSPUNTOS,LLAVE_A,LLAVE_C,CORH_A,CORH_C,PAR_A,PAR_C,ADMI_C,MENOR,MAYOR,PUNTO;
+
+terminal String CLAVES,REGISTROS,ARCHIVO,NUMERICO,TIPO_CADENA,LEER_ARCHIVO,SUMAR,CONTAR,PROMEDIO,CONTAR_SI,OBTENER_SI,IMPRIMIR,GRAFICAR;
+terminal String ENTERO,ID,COMENTARIO_LINEA,COMENTARIO_VARIASL,CADENA;
+
+
+// -------- No Terminales
+non terminal String INICIO,E;
+
+start with INICIO;
+
+/* -------- Reglas Semanticas -------- */
+
+INICIO ::= E;
+
+E ::= E COMA ID    
+      | ID : valor
+;
+

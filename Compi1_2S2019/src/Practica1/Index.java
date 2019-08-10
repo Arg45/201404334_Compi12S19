@@ -5,12 +5,36 @@
  */
 package Practica1;
 
+import java.awt.Desktop;
+import java.awt.Graphics;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringReader;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author argue
  */
 public class Index extends javax.swing.JFrame {
-
+    JFileChooser archivo;
+    
+    String rutaManualTecnico = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\tecnico.pdf";
+    String rutaManualUsuario = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\usuario.pdf";  
+    String rutaWeb = "C:\\Users\\argue\\OneDrive\\Documents\\NetBeansProjects\\Compi1_1S2019\\Reportes\\Web.html";
+    String rutaToken = "C:\\Users\\argue\\OneDrive\\Documents\\NetBeansProjects\\Compi1_1S2019\\Reportes\\Token.html";
+    String rutaErrorLEX = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\ErroresLexicos.html";
+    String rutaErrorSIN = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\ErroresSintacticos.html";
+    String rutaImagen = "/Proyecto1/fondo.jpg";
     /**
      * Creates new form Index
      */
@@ -27,25 +51,26 @@ public class Index extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jP_fondo = new javax.swing.JPanel();
         jT_consola = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtA_consola = new javax.swing.JTextArea();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jT_archivos = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_archivo = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jM_archivo = new javax.swing.JMenu();
+        ji_abrir = new javax.swing.JMenuItem();
+        ji_guardar = new javax.swing.JMenuItem();
+        ji_guardarComo = new javax.swing.JMenuItem();
+        ji_compilar = new javax.swing.JMenuItem();
+        jM_reportes = new javax.swing.JMenu();
+        ji_lexico = new javax.swing.JMenuItem();
+        ji_sintactico = new javax.swing.JMenuItem();
+        ji_semantico = new javax.swing.JMenuItem();
+        jM_ayuda = new javax.swing.JMenu();
+        ji_manualUsuario = new javax.swing.JMenuItem();
+        ji_manualTecnico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,75 +83,119 @@ public class Index extends javax.swing.JFrame {
         jT_consola.addTab("Consola", jScrollPane1);
         jScrollPane1.getAccessibleContext().setAccessibleName("");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_archivo.setColumns(20);
+        txt_archivo.setRows(5);
+        jScrollPane2.setViewportView(txt_archivo);
 
-        jTabbedPane1.addTab("tab1", jScrollPane2);
+        jT_archivos.addTab("hljh", jScrollPane2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jP_fondoLayout = new javax.swing.GroupLayout(jP_fondo);
+        jP_fondo.setLayout(jP_fondoLayout);
+        jP_fondoLayout.setHorizontalGroup(
+            jP_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_fondoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addGroup(jP_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jT_archivos, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                     .addComponent(jT_consola))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jP_fondoLayout.setVerticalGroup(
+            jP_fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_fondoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jT_archivos, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jT_consola, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jT_consola.getAccessibleContext().setAccessibleName("");
+        jT_archivos.getAccessibleContext().setAccessibleName("");
 
-        jMenu1.setText("Archivo");
+        jM_archivo.setText("Archivo");
 
-        jMenuItem1.setText("Abrir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        ji_abrir.setText("Abrir");
+        ji_abrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                ji_abrirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jM_archivo.add(ji_abrir);
 
-        jMenuItem2.setText("Guardar");
-        jMenu1.add(jMenuItem2);
+        ji_guardar.setText("Guardar");
+        ji_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_guardarActionPerformed(evt);
+            }
+        });
+        jM_archivo.add(ji_guardar);
 
-        jMenuItem3.setText("Guardar como");
-        jMenu1.add(jMenuItem3);
+        ji_guardarComo.setText("Guardar como");
+        ji_guardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_guardarComoActionPerformed(evt);
+            }
+        });
+        jM_archivo.add(ji_guardarComo);
 
-        jMenuBar1.add(jMenu1);
+        ji_compilar.setText("Compilar");
+        ji_compilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_compilarActionPerformed(evt);
+            }
+        });
+        jM_archivo.add(ji_compilar);
 
-        jMenu2.setText("Reportes");
+        jMenuBar1.add(jM_archivo);
 
-        jMenuItem6.setText("Errores lexicos");
-        jMenu2.add(jMenuItem6);
+        jM_reportes.setText("Reportes");
 
-        jMenuItem7.setText("Errores sintacticos");
-        jMenu2.add(jMenuItem7);
+        ji_lexico.setText("Errores lexicos");
+        ji_lexico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_lexicoActionPerformed(evt);
+            }
+        });
+        jM_reportes.add(ji_lexico);
 
-        jMenuItem8.setText("Errores semanticos");
-        jMenu2.add(jMenuItem8);
+        ji_sintactico.setText("Errores sintacticos");
+        ji_sintactico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_sintacticoActionPerformed(evt);
+            }
+        });
+        jM_reportes.add(ji_sintactico);
 
-        jMenuBar1.add(jMenu2);
+        ji_semantico.setText("Errores semanticos");
+        ji_semantico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_semanticoActionPerformed(evt);
+            }
+        });
+        jM_reportes.add(ji_semantico);
 
-        jMenu3.setText("Ayuda");
+        jMenuBar1.add(jM_reportes);
 
-        jMenuItem4.setText("Manual de usuario");
-        jMenu3.add(jMenuItem4);
+        jM_ayuda.setText("Ayuda");
 
-        jMenuItem5.setText("Manual tecnico");
-        jMenu3.add(jMenuItem5);
+        ji_manualUsuario.setText("Manual de usuario");
+        ji_manualUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_manualUsuarioActionPerformed(evt);
+            }
+        });
+        jM_ayuda.add(ji_manualUsuario);
 
-        jMenuBar1.add(jMenu3);
+        ji_manualTecnico.setText("Manual tecnico");
+        ji_manualTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ji_manualTecnicoActionPerformed(evt);
+            }
+        });
+        jM_ayuda.add(ji_manualTecnico);
+
+        jMenuBar1.add(jM_ayuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -135,22 +204,50 @@ public class Index extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jP_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jP_fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void ji_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_abrirActionPerformed
+        abrir();
+    }//GEN-LAST:event_ji_abrirActionPerformed
+    private void ji_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_guardarActionPerformed
+        if (archivo==null) {
+            JOptionPane.showMessageDialog(null, "No existe un archivo abierto", "ADVERTENCIA",JOptionPane.ERROR_MESSAGE);
+        }else{
+            guardar();
+        }
+    }//GEN-LAST:event_ji_guardarActionPerformed
+    private void ji_guardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_guardarComoActionPerformed
+        guardarComo();
+    }//GEN-LAST:event_ji_guardarComoActionPerformed
+    private void ji_lexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_lexicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_ji_lexicoActionPerformed
+    private void ji_sintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_sintacticoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ji_sintacticoActionPerformed
+    private void ji_semanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_semanticoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ji_semanticoActionPerformed
+    private void ji_manualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_manualUsuarioActionPerformed
+        manuales(rutaManualUsuario);
+    }//GEN-LAST:event_ji_manualUsuarioActionPerformed
+    private void ji_manualTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_manualTecnicoActionPerformed
+        manuales(rutaManualTecnico);
+    }//GEN-LAST:event_ji_manualTecnicoActionPerformed
+    private void ji_compilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_compilarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ji_compilarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,24 +285,178 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jM_archivo;
+    private javax.swing.JMenu jM_ayuda;
+    private javax.swing.JMenu jM_reportes;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jP_fondo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jT_archivos;
     private javax.swing.JTabbedPane jT_consola;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem ji_abrir;
+    private javax.swing.JMenuItem ji_compilar;
+    private javax.swing.JMenuItem ji_guardar;
+    private javax.swing.JMenuItem ji_guardarComo;
+    private javax.swing.JMenuItem ji_lexico;
+    private javax.swing.JMenuItem ji_manualTecnico;
+    private javax.swing.JMenuItem ji_manualUsuario;
+    private javax.swing.JMenuItem ji_semantico;
+    private javax.swing.JMenuItem ji_sintactico;
     private javax.swing.JTextArea txtA_consola;
+    private javax.swing.JTextArea txt_archivo;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    
+    
+    private void guardar(){
+        try {
+            File archivo_nuevo = archivo.getSelectedFile();
+            FileNameExtensionFilter filtroidm = new FileNameExtensionFilter("*.uweb","uweb");
+            if(filtroidm.getExtensions().toString()=="uweb"){
+                System.out.println("si es el tipo de archivo");
+            }
+            System.out.println("se supone que verifico tipos");
+            if(archivo_nuevo !=null){
+                FileWriter guardar = new FileWriter(archivo_nuevo + ".txt");
+                guardar.write(txt_archivo.getText());
+                guardar.close();
+                JOptionPane.showMessageDialog(null,"El archivo se guardo con éxito", "Información",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch(IOException ex)  {
+            JOptionPane.showMessageDialog(null, "No se pudo guardar el archivo", "ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    private void guardarComo(){
+        try{
+            archivo = new JFileChooser();
+            archivo.showSaveDialog(this);
+            File archivo_nuevo = archivo.getSelectedFile();
+            if(archivo_nuevo !=null){
+                try (FileWriter guardar = new FileWriter(archivo_nuevo+".txt")) {
+                    guardar.write(txt_archivo.getText());                
+                    JOptionPane.showMessageDialog(null,"El archivo se guardo con éxito", "Información",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }                
+        } catch(IOException ex)  {
+            JOptionPane.showMessageDialog(null, "No se pudo guardar el archivo", "ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    private void abrir(){
+        String letras = "";
+        String aux;
+        try {
+            archivo = new JFileChooser(); 
+            archivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            archivo.showOpenDialog(this);
+            File abrir_archivo = archivo.getSelectedFile();  
+            if (abrir_archivo!=null) {
+                FileReader archivos = new FileReader(abrir_archivo);
+                try (BufferedReader lee = new BufferedReader(archivos)) {
+                    while((aux=lee.readLine())!=null){
+                        letras += aux+ "\n";
+                    }
+                }
+            }
+        } catch (HeadlessException | IOException e) {
+            JOptionPane.showMessageDialog(null, "No se encuentra el archivo.");
+        }
+        txt_archivo.setText(letras);
+    }
+    
+    private void manuales(String Manual){
+        try {
+            File path = new File (Manual);
+            Desktop.getDesktop().open(path);
+        }catch (IOException ex) {
+            System.out.println("No se pudo abrir el manual. "+ex);
+        }
+    }
+
+    public void generarErroresLexicosHTML() throws IOException{
+        String primeroError = "<html><title>Errores</title><body bgcolor=#9ACD32><center><h1>Tabla de Errores Lexicos</h1><table border=1><tr><td width = 50 bgcolor=white><center><h3>No.</h3></td><td width = 75 bgcolor=white><center><h3>Fila</h3></td><td width = 100 bgcolor=white><center><h3>Columna</h3></center></td><td width = 300 bgcolor=white><center><h3>Caracter</h3></center></td><td width = 300 bgcolor=white><center><h3>Descripcion</h3></center></td></tr>\n";
+        String finArchivo = "</table></body></html>";
+        
+        String textoArchivo = primeroError;
+        for (int i = 0; i < A_Lexico.ListaErroresLexicos.size(); i++)
+        {
+            if (A_Lexico.ListaErroresLexicos.get(i) != null)
+            {
+                textoArchivo = textoArchivo + "<tr>\n";
+                textoArchivo = textoArchivo + "<td>" + (i + 1) + "</td><td>" + A_Lexico.ListaErroresLexicos.get(i).fila + "</td><td>" + A_Lexico.ListaErroresLexicos.get(i).columna + "</td><td>" + A_Lexico.ListaErroresLexicos.get(i).Caracter + "</td><td>" + A_Lexico.ListaErroresLexicos.get(i).Descripcion + "\n";
+                textoArchivo = textoArchivo + "</tr>\n";
+            }
+        }
+        textoArchivo = textoArchivo + finArchivo;
+        String mydocpath = "C:\\Users\\Argueta\\Documents\\NetBeansProjects\\Compi1_1S2019\\Reportes\\ErroresLexicos.html";
+        //crearArchivo(textoArchivo, mydocpath);  
+        crearArchivo(textoArchivo, rutaErrorLEX); 
+    }
+    public void generarErroresSintacticosHTML() throws IOException{
+        String primeroError = "<html><title>Errores</title><body bgcolor=#9ACD32><center><h1>Tabla de Errores Sintacticos</h1><table border=1><tr><td width = 50 bgcolor=white><center><h3>No.</h3></td><td width = 75 bgcolor=white><center><h3>Fila</h3></td><td width = 100 bgcolor=white><center><h3>Columna</h3></center></td><td width = 300 bgcolor=white><center><h3>Caracter</h3></center></td><td width = 300 bgcolor=white><center><h3>Descripcion</h3></center></td></tr>\n";
+        String finArchivo = "</table></body></html>";
+        
+        String textoArchivo = primeroError;
+        for (int i = 0; i < A_sintactico.ListaErroresSintacticos.size(); i++) {
+            if (A_sintactico.ListaErroresSintacticos.get(i) != null) {
+                textoArchivo = textoArchivo + "<tr>\n";
+                textoArchivo = textoArchivo + "<td>" + (i + 1) + "</td><td>" + A_sintactico.ListaErroresSintacticos.get(i).fila + "</td><td>" + A_sintactico.ListaErroresSintacticos.get(i).columna + "</td><td>" + A_sintactico.ListaErroresSintacticos.get(i).Caracter + "</td><td>" + A_sintactico.ListaErroresSintacticos.get(i).Descripcion + "\n";
+                textoArchivo = textoArchivo + "</tr>\n";
+            }
+        }
+        textoArchivo = textoArchivo + finArchivo;
+        String mydocpath = "C:\\Users\\Argueta\\Documents\\NetBeansProjects\\Compi1_1S2019\\Reportes\\ErroresSintacticos.html";
+        //crearArchivo(textoArchivo, mydocpath); 
+        crearArchivo(textoArchivo, rutaErrorSIN); 
+    }
+    
+    public void crearArchivo(String Cadena, String Ruta) throws IOException{
+        File archivo1= new File(Ruta);
+        BufferedWriter bw;
+        bw= new BufferedWriter(new FileWriter(archivo1));
+        bw.write(Cadena);
+        bw.close(); 
+    }
+    
+    private void ejecutarCompilador(){
+        A_Lexico lexi = new A_Lexico(new BufferedReader(new StringReader(txt_archivo.getText())));
+        A_sintactico sintax = new A_sintactico(lexi);
+        try {
+            sintax.parse();      
+            generarErroresLexicosHTML();
+            generarErroresSintacticosHTML();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se ejecuto la compilacion", "ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+            System.out.println("Error: "+ex);
+            ex.getCause();
+        }
+        System.out.println("\nFinaliza el analisis...");        
+    }
+    
+    public class Imagen extends javax.swing.JPanel {
+        int alto = 2500;
+        int ancho = 800;
+        public Imagen() {
+                this.setSize(alto,ancho);
+        }
+        @Override
+        public void paint(Graphics g) {
+            ImageIcon Img = new ImageIcon(getClass().getResource(rutaImagen));
+            g.drawImage(Img.getImage(), 0, 0, alto, ancho, null);
+            setOpaque(false);
+            super.paintComponent(g);
+        }
+    }
+private void imprimirImagen(){
+    Imagen Imagen = new Imagen();
+    jP_fondo.add(Imagen);
+    jP_fondo.repaint();
+}
+public ImageIcon redimensionarImagen(int x, String url) {
+        ImageIcon a = new ImageIcon(url);
+        ImageIcon b = new ImageIcon(a.getImage().getScaledInstance(x, -1, Image.SCALE_DEFAULT));
+        return b;
+    }
 }
