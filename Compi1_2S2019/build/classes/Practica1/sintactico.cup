@@ -51,46 +51,10 @@ parser code
     public static LinkedList<ErrorSintactico> ListaErroresSintacticos = new LinkedList<ErrorSintactico>();
     public LinkedList<String> listaHTML = new LinkedList<>();
 
-    public static void setSalidaHTML(String entrada){
-        HTML = entrada;
-System.out.println("si imprime esto es porque llego al setSalida");
-        /* for(int i=0; i<listaHTML.size(); i++){
-            System.out.println(listaHTML.get(i));
-        } */
-    }
+    
     public LinkedList<ErrorSintactico> getlista() {
         return ListaErroresSintacticos;
     }
-    public void syntax_error(Symbol s)
-    {
-        String lexema = s.value.toString();
-        int fila = s.right;
-        int columna = s.left;
-
-        System.out.println("!!!! Error Sintactico Recuperado !!!!");
-        System.out.println("\t\tLexema: " + lexema);
-        System.out.println("\t\tFila: " + fila);
-        System.out.println("\t\tColumna: " + columna);
-
-        ErrorSintactico datos = new ErrorSintactico(fila,columna,lexema,"Caracter no esperado");
-        ListaErroresSintacticos.add(datos);
-    }
-
-    //Metodo al que se llama cuando no se puede recuperar un error sintactico
-    public void unrecovered_syntax_error(Symbol s)
-    {
-        String lexema = s.value.toString();
-        int fila = s.right;
-        int columna = s.left;
-
-        System.out.println("!!!! Error Sintactico, Panic mode !!!!");
-        System.out.println("\t\tLexema: " + lexema);
-        System.out.println("\t\tFila: " + fila);
-        System.out.println("\t\tColumna: " + columna);
-
-        ErrorSintactico datos = new ErrorSintactico(fila,columna,lexema,"Caracter no esperado");
-        ListaErroresSintacticos.add(datos);
-    }   
 
 :}
 
