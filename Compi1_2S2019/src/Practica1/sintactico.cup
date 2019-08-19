@@ -76,6 +76,7 @@ terminal String ENTERO,ID,COMENTARIO_LINEA,COMENTARIO_VARIASL,CADENA;
 
 // -------- No Terminales
 non terminal String INICIO,E;
+non terminal cla,cad
 
 start with INICIO;
 
@@ -87,3 +88,9 @@ E ::= E COMA ID
       | ID : valor
 ;
 
+cla ::= CLAVES IGUAL CORH_A cad CORH_C
+cad ::= CADENA
+    | COMA
+
+reg ::= REGISTROS IGUAL CORH_A regi CORH_C
+regi ::= 

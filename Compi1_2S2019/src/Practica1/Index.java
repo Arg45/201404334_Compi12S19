@@ -34,13 +34,15 @@ public class Index extends javax.swing.JFrame {
     String rutaToken = "C:\\Users\\argue\\OneDrive\\Documents\\NetBeansProjects\\Compi1_1S2019\\Reportes\\Token.html";
     String rutaErrorLEX = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\ErroresLexicos.html";
     String rutaErrorSIN = "D:\\Trabajos\\U\\USAC\\Cursos\\12vo Semestre\\Compi 1\\201404334_Compi12S19\\Compi1_2S2019\\Manuales\\ErroresSintacticos.html";
-    String rutaImagen = "/Proyecto1/fondo.jpg";
+    String rutaImagen = "/Practica1/fondo.jpg";
     /**
      * Creates new form Index
      */
     public Index() {
         initComponents();
         this.setLocation(200, 50);
+        imprimirImagen();
+        jScrollPane2.setName("prueba1");
     }
 
     /**
@@ -88,7 +90,7 @@ public class Index extends javax.swing.JFrame {
         txt_archivo.setRows(5);
         jScrollPane2.setViewportView(txt_archivo);
 
-        jT_archivos.addTab("hljh", jScrollPane2);
+        jT_archivos.addTab("Archivos", jScrollPane2);
 
         javax.swing.GroupLayout jP_fondoLayout = new javax.swing.GroupLayout(jP_fondo);
         jP_fondo.setLayout(jP_fondoLayout);
@@ -243,7 +245,7 @@ public class Index extends javax.swing.JFrame {
         manuales(rutaManualTecnico);
     }//GEN-LAST:event_ji_manualTecnicoActionPerformed
     private void ji_compilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ji_compilarActionPerformed
-        // TODO add your handling code here:
+        ejecutarCompilador();
     }//GEN-LAST:event_ji_compilarActionPerformed
 
     /**
@@ -447,8 +449,8 @@ public class Index extends javax.swing.JFrame {
         }
     }
 private void imprimirImagen(){
-    Imagen Imagen = new Imagen();
-    jP_fondo.add(Imagen);
+    Imagen img = new Imagen();
+    jP_fondo.add(img);
     jP_fondo.repaint();
 }
 public ImageIcon redimensionarImagen(int x, String url) {

@@ -5,16 +5,13 @@ import java.util.LinkedList;
 
 
 %%
-
-
 %{
     public static LinkedList<Token> ListaTokens = new LinkedList<Token>();
 
-    public static LinkedList<Tabla_error> TablaEl = new LinkedList<Tabla_error>();
+    public static LinkedList<Tabla_error> ListaErroresLexicos = new LinkedList<Tabla_error>();
 
-    public static LinkedList<ErrorLexico> ListaErroresLexicos = new LinkedList<ErrorLexico>();
 
-    public LinkedList<ErrorLexico> getlistaErrLexi() {
+    public LinkedList<Tabla_error> getlistaErroresLexicos() {
         return A_Lexico.ListaErroresLexicos;
     }
     public LinkedList<Token> getlistaTokens() {
@@ -34,7 +31,6 @@ import java.util.LinkedList;
 %ignorecase
 
 %full
-
 
 
 IGUAL = "="
@@ -76,7 +72,8 @@ ENTERO = [+|-]*[0-9]+
 ID  = [A-Za-zñÑ][_0-9A-Za-zñÑ]+
 COMENTARIO_LINEA = "//" [^\r\n]* [^\r\n]
 COMENTARIO_VARIASL = ("/*" [^/] "*/")
-CADENA = (" \" " [^\"] " \" ")
+//CADENA = (" \" " [^\"] " \" ")
+CADENA = [\"][^\"\n]*[\"\n]
 
 SPACE   = [\ \r\t\f\t]
 ENTER   = [ \n]
@@ -129,6 +126,6 @@ ENTER   = [ \n]
 
 
  . {System.out.println("Error lexico: "+yytext()+" linea: "+yyline+" columna: "+yycolumn);
-    Tabla_error eror = new Tabla_error(yytext(),yyline,yycolumn,"Error Lexico","El simbolo no pertenece al lenguaje.");
-    TablaEl.add(eror);
+    Tabla_error eLexico = new Tabla_error(yytext(),yyline,yycolumn,"Error Lexico","El simbolo no pertenece al lenguaje.");
+    TablaEl.add(eLexico);
    }
